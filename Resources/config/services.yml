@@ -1,4 +1,3 @@
 services:
-#    sk_image_optimizer.example:
-#        class: sk\ImageOptimizerBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    sk_image_optimizer.basic:
+        class: sk\ImageOptimizerBundle\Optimizer\BasicOptimizer
