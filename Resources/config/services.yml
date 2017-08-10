@@ -1,3 +1,4 @@
 services:
     sk_image_optimizer.basic:
         class: sk\ImageOptimizerBundle\Optimizer\BasicOptimizer
+        arguments: []
