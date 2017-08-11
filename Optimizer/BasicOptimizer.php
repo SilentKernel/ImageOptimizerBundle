@@ -4,7 +4,6 @@ namespace sk\ImageOptimizerBundle\Optimizer;
 
 use Spatie\ImageOptimizer\OptimizerChainFactory as BaseOptimizerChainFactory;
 
-
 /**
  * Class Optimizer
  * @package sk\ImageOptimizerBundle\Optimizer
@@ -27,10 +26,15 @@ class BasicOptimizer
     /**
      * @param string $pathToImage
      * @param string|null $pathToOutput
+     * @return boolean
      */
     public function optimize(string $pathToImage, string $pathToOutput = null)
     {
-        $this->optimizerChain->optimize($pathToImage, $pathToOutput);
+        if (file_exists($pathToImage)){
+            $this->optimizerChain->optimize($pathToImage, $pathToOutput);
+            return true;
+        }
+        return false;
     }
 
     /**
