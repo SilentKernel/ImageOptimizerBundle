@@ -17,7 +17,7 @@ class OptimizeCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('sk:ior:optimize')
+            ->setName('sk:io:optimize')
             ->setDescription('Optimize an image file')
             ->setHelp('Optimize an image to make the file smaller')
             ->addArgument('input', InputArgument::REQUIRED, 'The input file path')
@@ -29,6 +29,10 @@ class OptimizeCommand extends ContainerAwareCommand
         $iputFile = $input->getArgument('input');
         $outputFile = $input->getArgument('output');
 
-        $this->getContainer()->get("skio.basic")->optimize($iputFile, $outputFile);
+        if ($this->getContainer()->get("skio.basic")->optimize($iputFile, $outputFile)) {
+            $output->writeln("Optimization done");
+        } else {
+            $output->writeln("Input file not found");
+        }
     }
 }
