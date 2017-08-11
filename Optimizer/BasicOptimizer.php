@@ -2,7 +2,8 @@
 
 namespace sk\ImageOptimizerBundle\Optimizer;
 
-use Spatie\ImageOptimizer\OptimizerChainFactory as BaseOptimizerChainFactory;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+use Spatie\ImageOptimizer\OptimizerChain;
 
 /**
  * Class Optimizer
@@ -20,7 +21,7 @@ class BasicOptimizer
      */
     public function __construct()
     {
-        $this->optimizerChain = BaseOptimizerChainFactory::create();
+        $this->optimizerChain = OptimizerChainFactory::create();
     }
 
     /**
@@ -28,9 +29,9 @@ class BasicOptimizer
      * @param string|null $pathToOutput
      * @return boolean
      */
-    public function optimize(string $pathToImage, string $pathToOutput = null)
+    public function optimize(string $pathToImage, string $pathToOutput = null): bool
     {
-        if (file_exists($pathToImage)){
+        if (file_exists($pathToImage)) {
             $this->optimizerChain->optimize($pathToImage, $pathToOutput);
             return true;
         }
@@ -41,7 +42,7 @@ class BasicOptimizer
      * @param int $timeoutInSeconds
      * @return \Spatie\ImageOptimizer\OptimizerChain
      */
-    public function setTimeout(int $timeoutInSeconds)
+    public function setTimeout(int $timeoutInSeconds): OptimizerChain
     {
         return $this->optimizerChain->setTimeout($timeoutInSeconds);
     }
@@ -49,7 +50,7 @@ class BasicOptimizer
     /**
      * @return \Spatie\ImageOptimizer\OptimizerChain
      */
-    public function getOptimizerChain()
+    public function getOptimizerChain(): OptimizerChain
     {
         return $this->optimizerChain;
     }
