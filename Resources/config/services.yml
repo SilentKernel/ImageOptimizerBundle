@@ -1,4 +1,4 @@
 services:
-    sk_image_optimizer.basic:
+    skio.basic:
         class: sk\ImageOptimizerBundle\Optimizer\BasicOptimizer
         arguments: []

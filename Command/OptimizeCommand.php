@@ -17,7 +17,7 @@ class OptimizeCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('sk:image-optimizer:optimize')
+            ->setName('sk:ior:optimize')
             ->setDescription('Optimize an image file')
             ->setHelp('Optimize an image to make the file smaller')
             ->addArgument('input', InputArgument::REQUIRED, 'The input file path')
@@ -29,6 +29,6 @@ class OptimizeCommand extends ContainerAwareCommand
         $iputFile = $input->getArgument('input');
         $outputFile = $input->getArgument('output');
 
-        $this->getContainer()->get("sk_image_optimizer.basic")->optimize($iputFile, $outputFile);
+        $this->getContainer()->get("skio.basic")->optimize($iputFile, $outputFile);
     }
 }
