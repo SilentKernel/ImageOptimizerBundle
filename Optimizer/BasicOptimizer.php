@@ -14,14 +14,14 @@ class BasicOptimizer
     /**
      * @var \Spatie\ImageOptimizer\OptimizerChain
      */
-    private $OptimizerChainFactory;
+    private $optimizerChain;
 
     /**
      * Optimizer constructor.
      */
     public function __construct()
     {
-        $this->OptimizerChainFactory = BaseOptimizerChainFactory::create();
+        $this->optimizerChain = BaseOptimizerChainFactory::create();
     }
 
     /**
@@ -30,14 +30,23 @@ class BasicOptimizer
      */
     public function optimize(string $pathToImage, string $pathToOutput = null)
     {
-        $this->OptimizerChainFactory->optimize($pathToImage, $pathToOutput);
+        $this->optimizerChain->optimize($pathToImage, $pathToOutput);
     }
 
     /**
      * @param int $timeoutInSeconds
+     * @return \Spatie\ImageOptimizer\OptimizerChain
      */
     public function setTimeout(int $timeoutInSeconds)
     {
-        $this->OptimizerChainFactory->setTimeout($timeoutInSeconds);
+        return $this->optimizerChain->setTimeout($timeoutInSeconds);
+    }
+
+    /**
+     * @return \Spatie\ImageOptimizer\OptimizerChain
+     */
+    public function getOptimizerChain()
+    {
+        return $this->optimizerChain;
     }
 }
