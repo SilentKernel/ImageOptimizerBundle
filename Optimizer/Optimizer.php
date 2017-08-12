@@ -9,7 +9,7 @@ use Spatie\ImageOptimizer\OptimizerChain;
  * Class Optimizer
  * @package sk\ImageOptimizerBundle\Optimizer
  */
-class BasicOptimizer
+class Optimizer
 {
     /**
      * @var \Spatie\ImageOptimizer\OptimizerChain
