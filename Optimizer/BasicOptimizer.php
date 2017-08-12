@@ -22,7 +22,7 @@ class BasicOptimizer
      */
     public function __construct(string $mode)
     {
-        if ($mode == "basic"){
+        if ($mode == "default"){
             $this->optimizerChain = OptimizerChainFactory::create();
         }
     }

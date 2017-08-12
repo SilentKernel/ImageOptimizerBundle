@@ -42,7 +42,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
 
                             ->arrayNode('svgo')->prototype('scalar')->end()
-                                ->defaultValue(['--disable=cleanupIDs'])
+                                ->defaultValue(['--disable=cleanupIDs',])
                                 ->prototype('scalar')->end()
                             ->end()
 

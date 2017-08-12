@@ -29,7 +29,7 @@ class OptimizeCommand extends ContainerAwareCommand
         $iputFile = $input->getArgument('input');
         $outputFile = $input->getArgument('output');
 
-        if ($this->getContainer()->get("skio.basic")->optimize($iputFile, $outputFile)) {
+        if ($this->getContainer()->get("skio.default")->optimize($iputFile, $outputFile)) {
             $output->writeln("Optimization done");
         } else {
             $output->writeln("Input file not found");
