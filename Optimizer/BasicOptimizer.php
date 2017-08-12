@@ -17,13 +17,15 @@ class BasicOptimizer
     private $optimizerChain;
 
     /**
-     * @param string $mode
+     * @param array $config
      * Optimizer constructor.
      */
-    public function __construct(string $mode)
+    public function __construct(array $config)
     {
-        if ($mode == "default"){
+        if (empty($config)) {
             $this->optimizerChain = OptimizerChainFactory::create();
+        } else {
+            // Todo: Create instance of ChainOptimizer with configured arguments
         }
     }
 
