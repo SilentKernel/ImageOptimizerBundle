@@ -17,11 +17,14 @@ class BasicOptimizer
     private $optimizerChain;
 
     /**
+     * @param string $mode
      * Optimizer constructor.
      */
-    public function __construct()
+    public function __construct(string $mode)
     {
-        $this->optimizerChain = OptimizerChainFactory::create();
+        if ($mode == "basic"){
+            $this->optimizerChain = OptimizerChainFactory::create();
+        }
     }
 
     /**

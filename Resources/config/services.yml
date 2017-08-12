@@ -1,4 +1,4 @@
 services:
     skio.basic:
         class: Silentkernel\ImageOptimizerBundle\Optimizer\BasicOptimizer
-        arguments: []
+        arguments: ["basic"]

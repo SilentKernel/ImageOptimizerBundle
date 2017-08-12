@@ -12,17 +12,55 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+
     /**
      * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('silentkernel_image_optimizer');
+        $rootNode = $treeBuilder->root('silentkernel_image_optimizer', 'array');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('profils')->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->arrayNode('jpegoptim')
+                                ->defaultValue(['--strip-all', '--all-progressive',])
+                                ->prototype('scalar')
+                                ->end()
+                            ->end()
+
+                            ->arrayNode('pngquant')
+                                ->defaultValue(['--force',])
+                                ->prototype('scalar')
+                                ->end()
+                            ->end()
+
+                            ->arrayNode('optipng')
+                                ->defaultValue(['-i0', '-o2', '-quiet',])
+                                ->prototype('scalar')
+                                ->end()
+                            ->end()
+
+                            ->arrayNode('svgo')->prototype('scalar')->end()
+                                ->defaultValue(['--disable=cleanupIDs'])
+                                ->prototype('scalar')
+                                ->end()
+                            ->end()
+
+                            ->arrayNode('gifsicle')->prototype('scalar')->end()
+                                ->defaultValue([ '-b', '-O3',])
+                                ->prototype('scalar')
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+
 
         return $treeBuilder;
     }
