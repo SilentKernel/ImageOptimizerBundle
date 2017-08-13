@@ -22,7 +22,25 @@ class SilentkernelImageOptimizerExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
+
+        $this->createServiceFromConfig($config, $container);
+    }
+
+
+    /**
+     * Create the required services depends on config
+     *
+     * @param array $config
+     * @param ContainerBuilder $container
+     */
+    protected function createServiceFromConfig(array $config, ContainerBuilder $container)
+    {
+        if (!isset($config["profiles"])) {
+            // No customized profiles
+            return;
+        }
+
     }
 }

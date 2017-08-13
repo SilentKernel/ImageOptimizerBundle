@@ -19,11 +19,13 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('silentkernel_image_optimizer', 'array');
+        $rootNode = $treeBuilder->root('silentkernel_image_optimizer');
 
         $rootNode
+            ->ignoreExtraKeys()
+            ->fixXmlConfig('profile', 'profiles')
             ->children()
-                ->arrayNode('profils')->useAttributeAsKey('name')
+            ->arrayNode('profiles')->useAttributeAsKey('name')
                     ->prototype('array')
                         ->children()
                             ->arrayNode('jpegoptim')
